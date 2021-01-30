@@ -5,6 +5,7 @@
     text-decoration: none;
     list-style-type: none;
 }
+
 body{
     font-family: 'Roboto', sans-serif;
     background:url("images/bg.png");
@@ -114,7 +115,7 @@ nav ul li a:hover, a.active{
     border: none;
     color: #fff;
     font-weight: 500;
-    background-color:  #72768f;
+    background-color: crimson;
 }
 .amount{
     display: flex;
@@ -127,3 +128,25 @@ nav ul li a:hover, a.active{
     padding: 7px;
     
 }
+
+#confirmation-masage{
+    display: none;
+    background-color: aliceblue;
+    width: 350px;
+    height: 350px;
+    border-radius: 20px;
+    text-align: center;
+    color:teal;
+        
+}
+
+.logo-pic{
+    text-align:center;
+}
+.title{
+    text-align: center;
+    font-size: 40px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    color:crimson;
+}
+
