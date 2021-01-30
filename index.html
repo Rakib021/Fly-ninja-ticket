@@ -9,8 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;500;700&display=swap"
         rel="stylesheet">
-        <!-- Fonts Awesome -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
+    <!-- Fonts Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" />
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
@@ -44,7 +44,7 @@
             <div class="inputs">
                 <div class="input-group">
                     <label" for="">Departure</label>
-                    <input class="inp-style" type="date" name="">
+                        <input class="inp-style" type="date" name="">
                 </div>
                 <div class="input-group">
                     <label for="">Return</label>
@@ -53,26 +53,26 @@
             </div>
             <div class="input-group f-class">
                 <div>
-                    <label for="">First Class ($<span id="first-class-total">00</span>)</label>
-                    <input id="first-class-count" class="inp-style inp-width" value="0">
+                    <label for="">First Class ($<span id="first-class-total">150</span>)</label>
+                    <input id="firstClass-count" class="inp-style inp-width" value="0">
                 </div>
-               
-               <div>
-                <button id="increase-first-class"><i class="fas fa-plus"></i></button> <br>
-                <button  id="decrease-first-class"><i class="fas fa-minus"></i></button>
-               </div>
+
+                <div>
+                    <button class="buttons-property" id="increase-first-class"><i class="fas fa-plus"></i></button> <br>
+                    <button class="buttons-property" id="decrease-first-class"><i class="fas fa-minus"></i></button>
+                </div>
 
             </div>
-            
+
             <div class="input-group f-class">
                 <div>
-                    <label for="">Economy ($100)</label>
-                    <input class="inp-style inp-width" type="number" name="">
+                    <label for="">Economy ($<span id="economy-total">100</span>)</label>
+                    <input id="economy-count" class="inp-style inp-width" name="" value="0">
                 </div>
-               
+
                 <div>
-                    <button id="increase-economy"><i class="fas fa-plus"></i></button> <br>
-                    <button  id="Decrease-economy" ><i class="fas fa-minus"></i></button>
+                    <button class="buttons-property" id="increase-economy"><i class="fas fa-plus"></i></button> <br>
+                    <button class="buttons-property" id="decrease-economy"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             <div class="calculations">
@@ -81,7 +81,7 @@
                         <p>Subtotal</p>
                     </div>
                     <div class="right">
-                        <p>$500</p>
+                        <p id="subtotal">$0</p>
                     </div>
                 </div>
 
@@ -90,7 +90,7 @@
                         <p>Charge 10% VAT</p>
                     </div>
                     <div class="right">
-                        <p>$50</p>
+                        <p id="vat-amount">$0</p>
                     </div>
                 </div>
                 <hr>
@@ -99,7 +99,7 @@
                         <h4>Total</h4>
                     </div>
                     <div class="right">
-                        <p>$550</p>
+                        <p id ="total-ticket-price">$0</p>
                     </div>
                 </div>
             </div>
@@ -108,32 +108,84 @@
 
         <div class="booking-content">
             <h1>discover <br> around the world</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise voluptatibus quam</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicingelit. Provident voluptatibus quam fuga laborumalias
+                veniam libero autem quasi maxime ullam vero nama imi dolor, architecto ab facilis eaque deserunt nobise
+                voluptatibus quam</p>
         </div>
-    </section>
+        </section>
 
-   <script>
-       //First class Increase part
- document.getElementById("increase-first-class").addEventListener('click', function(){
-     const firstClassInput = document.getElementById("first-class-count");
-     const firstClassCount = parseInt(firstClassInput.value);
-     const firstClassNewCount = firstClassCount +1;
-     firstClassInput.value = firstClassNewCount;
-     const firstClassTotal = firstClassNewCount * 150 ;
-     document.getElementById("first-class-total").innerText= firstClassTotal;
- });
+        <script>
+
+function totalTicket(ticket,isIncrease) {
+                const ticketInput = document.getElementById(ticket+'-count');
+                const ticketCount = parseInt(ticketInput.value);
+
+                let ticketNewCount = ticketCount;
+                if (isIncrease == true) {
+                    ticketNewCount = ticketCount + 1;
+                }
+                if (isIncrease == false && ticketCount > 0) {
+                    ticketNewCount = ticketCount - 1;
+                }
+
+                ticketInput.value = ticketNewCount;
 
 
- //first class decrease part
- document.getElementById("decrease-first-class").addEventListener('click',function(){ 
-     const firstClassInput = document.getElementById("first-class-count");
-     const firstClassCount = parseInt(firstClassInput.value);
-     const firstClassNewCount = firstClassCount -1;
-     firstClassInput.value = firstClassNewCount;
-     const firstClassTotal = firstClassNewCount * 150;
-     document.getElementById("first-class-total").innerText = firstClassTotal;
- });
-   </script>
+            }
+
+
+
+            //First class Increase part
+            document.getElementById("increase-first-class").addEventListener('click', function () {
+                totalTicket('firstClass' ,true);
+                ticketPrice();
+
+            });
+
+
+            //first class decrease part
+            document.getElementById("decrease-first-class").addEventListener('click', function () {
+                totalTicket('firstClass', false);
+                ticketPrice();
+
+            });
+           
+
+
+            //economyTicket Increase part
+            document.getElementById("increase-economy").addEventListener('click', function () {
+                totalTicket('economy',true);
+                ticketPrice();
+
+                  })
+
+            //economy ticket Decreas part
+            document.getElementById("decrease-economy").addEventListener("click", function () {
+                totalTicket( 'economy',false);
+                ticketPrice();
+
+            });
+
+            function ticketPrice() {
+
+                const firstClassCount = getInputValue('firstClass');
+                const economyCount = getInputValue('economy');
+                let subtotal = firstClassCount * 150 + economyCount * 100;
+                document.getElementById("subtotal").innerText = subtotal;
+                const vat = subtotal *0.1;
+                document.getElementById("vat-amount").innerText = vat;
+                const totalTicketPrice = subtotal + vat;
+                document.getElementById("total-ticket-price").innerText= totalTicketPrice;
+            }
+            function getInputValue(ticket) {
+                const ticketInput = document.getElementById(ticket + '-count');
+                const ticketCount = parseInt(ticketInput.value);
+                return ticketCount;
+
+             }
+
+
+        </script>
 </body>
 
 </html>
